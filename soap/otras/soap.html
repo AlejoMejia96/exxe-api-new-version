@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Exxe App</title>
+    <script src="testsolex.blulogistics.net/solexPRE/services/webservicesolex.asmx" crossorigin="anonymous"></script>
+    <script src="./node_modules/easy-soap-request/dist/easy-soap-request.js"></script>
+    <script>
+        const url = 'testsolex.blulogistics.net/solexPRE/services/webservicesolex.asmx';
+        const sampleHeaders = {
+            'Content-Type': 'text/xml;charset=UTF-8',
+            SOAPAction: 'http://tempuri.org/CrearGuiaBlulogisticsV2',
+        };
+        const xml = `<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <tem:CrearGuiaBlulogisticsV2>
+                                <tem:user>testwschacam</user>
+                                <tem:password>testwschacam</password>
+                                <tem:guia>
+                                    <tem:DestinatarioIdentificacion>104005</DestinatarioIdentificacion>
+                                    <tem:DestinatarioNombre>pipe</DestinatarioNombre>
+                                    <tem:DestinatarioDireccion>cll 7</DestinatarioDireccion>
+                                    <tem:DestinatarioTelefono>568300</DestinatarioTelefono>
+                                    <tem:CiudadOrigen>cali</CiudadOrigen>
+                                    <tem:CiudadDestino>bogota</CiudadDestino>
+                                    <tem:Observacion>DELICADO</Observacion>
+                                    <tem:DestinatarioBarrio>SAN LUIS</DestinatarioBarrio>
+                                    <tem:Kilos>10</Kilos>
+                                    <tem:ValorDeclarado>250000</ValorDeclarado>
+                                    <tem:Cantidad>1</Cantidad>
+                                    <tem:IdCuentaCliente>221045</IdCuentaCliente>
+                                    <tem:DocumentoExterno>factura67</DocumentoExterno>
+                                    <tem:Guia>41256</Guia>
+                                    <tem:OtrosNumeros>12315
+                                    <tem:/OtrosNumeros>
+                                        <tem:Correo>mail@mail.com</Correo>
+                                        <tem:ValorRecaudo>3000000</ValorRecaudo>
+                                        <tem:TipoOperacion>contra entrega</TipoOperacion>
+                                        <tem:TipoProducto>carne</TipoProducto>
+                                </tem:guia>
+                            </tem:CrearGuiaBlulogisticsV2>
+                        </soapenv:Body>
+                    </soapenv:Envelope>`;
+        async function makeRequest() {
+            const { response } = await soapRequest({ url: url, headers: sampleHeaders, xml: xml });
+            const { body } = response;
+            console.log(body);
+            document.body.innerHTML = body;
+        };
+    </script>
+</head>
+<body>
+    <input type="button" value="soapRequest" onclick="makeRequest()" />
+</body>
+</html>

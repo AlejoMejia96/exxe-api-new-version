@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Exxe app</title>
+    <script>
+        function soapRequest(){
+            var str = '<?xml version="1.0" encoding="utf-8"?>' +
+                        '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
+                            '<soap:Body>' +
+                                '<CrearGuiaBlulogisticsV2 xmlns="http://tempuri.org/">' +
+                                    '<user>string</user>' +
+                                    '<password>string</password>' +
+                                    '<guia>' +
+                                        '<DestinatarioIdentificacion>string</DestinatarioIdentificacion>' +
+                                        '<DestinatarioNombre>string</DestinatarioNombre>' +
+                                        '<DestinatarioDireccion>string</DestinatarioDireccion>' +
+                                        '<DestinatarioTelefono>string</DestinatarioTelefono>' +
+                                        '<CiudadOrigen>string</CiudadOrigen>' +
+                                        '<CiudadDestino>string</CiudadDestino>' +
+                                        '<Observacion>string</Observacion>' +
+                                        '<DestinatarioBarrio>string</DestinatarioBarrio>' +
+                                        '<Kilos>int</Kilos>' +
+                                        '<ValorDeclarado>int</ValorDeclarado>' +
+                                        '<Cantidad>int</Cantidad>' +
+                                        '<IdCuentaCliente>int</IdCuentaCliente>' +
+                                        '<DocumentoExterno>string</DocumentoExterno>' +
+                                        '<Guia>string</Guia>' +
+                                        '<OtrosNumeros>' +
+                                            '<string>string</string>' +
+                                            '<string>string</string>' +
+                                        '</OtrosNumeros>' +
+                                        '<Correo>string</Correo>' +
+                                        '<ValorRecaudo>int</ValorRecaudo>' +
+                                        '<TipoOperacion>string</TipoOperacion>' +
+                                        '<TipoProducto>string</TipoProducto>' +
+                                    '</guia>' +
+                                '</CrearGuiaBlulogisticsV2>' +
+                            '</soap:Body>' +
+                        '</soap:Envelope>' ;
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="SOAP Request" onclick="soapRequest();"/>
+</body>
+</html>

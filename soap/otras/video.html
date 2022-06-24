@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <script crossorigin="use-credentials" ></script>
+    <script>
+        function soapRequest(){
+            var str = '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:tem="http://tempuri.org/">' +
+                        '<soap:Header/>' +
+                            '<soap:Body>' +
+                                '<tem:CrearGuiaBlulogisticsV2>' +
+                                    '<tem:user>testwschacam</user>' +
+                                    '<tem:password>testwschacam</password>' +
+                                    '<tem:guia>' +
+                                        '<tem:DestinatarioIdentificacion>1</DestinatarioIdentificacion>' +
+                                        '<tem:DestinatarioNombre>prueba</DestinatarioNombre>' +
+                                        '<tem:DestinatarioDireccion>calle 7</DestinatarioDireccion>' +
+                                        '<tem:DestinatarioTelefono>1234567</DestinatarioTelefono>' +
+                                        '<tem:CiudadOrigen>11001</CiudadOrigen>' +
+                                        '<tem:CiudadDestino>11001</CiudadDestino>' +
+                                        '<tem:Observacion>prueba</Observacion>' +
+                                        '<tem:DestinatarioBarrio>?</DestinatarioBarrio>' +
+                                        '<tem:Kilos>3</Kilos>' +
+                                        '<tem:ValorDeclarado>5000</ValorDeclarado>' +
+                                        '<tem:Cantidad>2</Cantidad>' +
+                                        '<tem:IdCuentaCliente>19496</IdCuentaCliente>' +
+                                        '<tem:DocumentoExterno>rf001</DocumentoExterno>' +
+                                    '</tem:guia>' +
+                                '</tem:CrearGuiaBlulogisticsV2>' +
+                            '</soapenv:Body>' +
+                        '</soapenv:Envelope>';
+
+            function createCORSRequest(method, url){
+                var xhr = new XMLHttpRequest();
+                if("withCredentials" in xhr){
+                    xhr.open(method, url, false);
+                } else if (typeof XDomainRequest != "undefined"){
+                    alert
+                    xhr = new XDomainRequest();
+                    xhr.open(method, url);
+                } else {
+                    console.log("CORS not supported");
+                    alert("CORS not supported");
+                    xhr = null;
+                }
+                return xhr;
+            }
+                        
+            var xhr = createCORSRequest("POST", "http://testsolex.blulogistics.net/solexPRE/services/webservicesolex.asmx");
+            if(!xhr){
+                console.log("XHR issue");
+                return;
+            }
+
+            xhr.onload = function (){
+                var results = xhr.responseText;
+                console.log(results)
+            }
+
+            xhr.setRequestHeader('Content-Type', 'text/xml');
+            xhr.setRequestHeader('SOAPAction', 'http://tempuri.org/CrearGuiaBlulogisticsV2');
+            xhr.send(str)
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="SOAP Request" onclick="soapRequest()" />
+</body>
+</html>
